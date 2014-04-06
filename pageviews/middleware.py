@@ -9,7 +9,7 @@ class PageViewsMiddleware:
             url = urllib2.quote(request.path)
         except KeyError:
             url = "BAD UNICODE DATA"
-        hit, hit_created = HitCount.objects.get_or_create(url=request.path)
+        hit, hit_created = HitCount.objects.get_or_create(url=url)
         hit.hits = F('hits') + 1
         hit.save()
 
